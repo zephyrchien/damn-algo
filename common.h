@@ -1,4 +1,5 @@
 #include <cstring>
+#include <sstream>
 #include <iostream>
 #include <format>
 #include <string>
@@ -21,6 +22,9 @@ using std::cout;
 using std::endl;
 using std::format;
 using std::println;
+using std::stringstream;
+using std::istringstream;
+using std::ostringstream;
 using namespace std::string_view_literals;
 
 using std::pair;
