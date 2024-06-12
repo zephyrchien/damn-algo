@@ -15,6 +15,8 @@
 #include <tuple>
 #include <unordered_map>
 #include <unordered_set>
+#include <limits>
+#include <cstdint>
 #include <functional>
 #include <algorithm>
 
@@ -39,3 +41,4 @@ using std::stack;
 using std::array;
 using std::unordered_map;
 using std::unordered_set;
+using std::numeric_limits;
