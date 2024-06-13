@@ -23,8 +23,7 @@ namespace solve1 {
         int _1st = sc + dpp(i - 1, j - 1);
         int _2nd = dpp(i, j - 1);
         int _3rd = dpp(i - 1, j);
-        int _4th = dpp(i - 1, j - 1);
-        dp[i][j] = std::max({_1st, _2nd, _3rd, _4th});
+        dp[i][j] = std::max({_1st, _2nd, _3rd});
       }
     }
     return dp[len - 1][len - 1];
@@ -42,8 +41,7 @@ namespace solve2 {
     int _1st = sc + solve(sc1, sc2, i - 1, j - 1);
     int _2nd = solve(sc1, sc2, i, j - 1);
     int _3rd = solve(sc1, sc2, i - 1, j);
-    int _4th = solve(sc1, sc2, i - 1, j - 1);
-    return memo[i][j] = std::max({_1st, _2nd, _3rd, _4th});
+    return memo[i][j] = std::max({_1st, _2nd, _3rd});
   }
   int solve(const Scores& sc1, const Scores& sc2) {
     const int len = std::size(sc1);
