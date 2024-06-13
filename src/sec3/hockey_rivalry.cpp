@@ -3,9 +3,9 @@
 using Score = pair<bool, int>;
 using Scores = vector<Score>;
 
-template <size_t N>
+template <size_t M, size_t N>
 struct Access {
-  int (&p)[N][N];
+  int (&p)[M][N];
   int get(int a, int b) const { return (a >= 0 && b >= 0) ? p[a][b] : 0; }
   int operator()(int a, int b) const { return get(a, b); }
 };
@@ -13,20 +13,21 @@ struct Access {
 namespace solve1 {
   int solve(const Scores& sc1, const Scores& sc2) {
     const int len = std::size(sc1);
-    int dp[100][100] = {0};
+    int dp[2][100] = {0};
     Access dpp{dp};
     for (int i = 0; i < len; ++i) {
       for (int j = 0; j < len; ++j) {
         const auto& [b1, v1] = sc1[i];
         const auto& [b2, v2] = sc2[j];
         int sc = ((b1 && !b2 && v1 > v2) || !b1 && b2 && v1 < v2) ? v1 + v2 : 0;
-        int _1st = sc + dpp(i - 1, j - 1);
-        int _2nd = dpp(i, j - 1);
-        int _3rd = dpp(i - 1, j);
-        dp[i][j] = std::max({_1st, _2nd, _3rd});
+        int _1st = sc + dpp(0, j - 1);
+        int _2nd = dpp(1, j - 1);
+        int _3rd = dpp(0, j);
+        dp[1][j] = std::max({_1st, _2nd, _3rd});
       }
+      std::memmove(dp, (int*)dp + 100, sizeof(int) * 100);
     }
-    return dp[len - 1][len - 1];
+    return dp[1][len - 1];
   }
 } // namespace solve1
 
