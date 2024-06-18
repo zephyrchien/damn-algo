@@ -1,4 +1,7 @@
-pfimport "slices"
+package main
+
+import "slices"
+import "fmt"
 
 func maxProfitAssignment(difficulty []int, profit []int, worker []int) int {
 	idx := make([]int, len(profit))
@@ -10,11 +13,11 @@ func maxProfitAssignment(difficulty []int, profit []int, worker []int) int {
 		return difficulty[a] - difficulty[b]
 	})
 	prx[0] = profit[idx[0]]
-	for i := 1; i < len(profit); i++ {
-		var j = i
-		var pf = profit[idx[i]]
+	for i := 1; i < len(profit); {
+		var j = i+1
+		var pf = max(prx[i-1], profit[idx[i]])
 		for ; j < len(profit); j++ {
-			if idx[j] == idx[i] {
+			if difficulty[idx[j]] == difficulty[idx[i]] {
 				pf = max(pf, profit[idx[j]])
 			} else {
 				break
@@ -23,7 +26,9 @@ func maxProfitAssignment(difficulty []int, profit []int, worker []int) int {
 		for x := i; x < j; x++ {
 			prx[x] = pf
 		}
+		i = j
 	}
+	fmt.Println(prx)
 	var ans = 0
 	for _, w := range worker {
 		i, ok := slices.BinarySearchFunc(idx, w, func(a, x int) int {
