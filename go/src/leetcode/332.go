@@ -21,3 +21,7 @@ func coinChange(coins []int, amount int) int {
 	}
 	return dp[amount]
 }
+
+func main() {
+
+}
