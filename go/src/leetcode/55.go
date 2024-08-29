@@ -13,3 +13,7 @@ func canJump(nums []int) bool {
 	}
 	return dp[len(nums)-1]
 }
+
+func main() {
+
+}

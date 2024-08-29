@@ -32,3 +32,6 @@ func minDays(bloomDay []int, m int, k int) int {
 	}
 	return lhs
 }
+
+func main() {
+}
